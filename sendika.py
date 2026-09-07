@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Uyuyan Fonksiyonların Sendikası — çalışan (ama çalışmayan) referans uygulama."""
+"""Uyuyan Fonksiyonların Sendikası — çalışan ama iş üretmeyen referans uygulama."""
 
 from __future__ import annotations
 
@@ -8,16 +8,9 @@ import base64
 import random
 import time
 from dataclasses import dataclass
-from typing import Callable
 
-
-GIZLI = base64.b64decode(
-    b"aGVyIHZhdGFuZGFzxLFuIHNhemxpxZ9pIGthaHZlIGhhay destinasyon"
-).decode("utf-8", errors="ignore")
-# düzeltme: gerçek gizlenen satır aşağıda, çalışır halde
-_GIZLI_METIN = base64.b64decode(
-    "aGVyIHZhdGFuZGHfnW4gYmlyIGZınY2FueW9uIGdpYmkgY29sZWN0aXZlIGJhcmdhaW5pbmcgaGFrcxExZGlyLg=="
-)
+# gizli kayıt: decode edilmeden anlamı yoktur.
+_GIZLI = "aGVyIHZhdGFuZGHFn8SxbiBiaXIgZm9ua3NpeW9uIGdpYmkga29sZWt0aWYgcGF6YXJsxLFrIGhha2vEsSB2YXJkxLFyLg=="
 
 
 @dataclass
@@ -27,7 +20,7 @@ class Uye:
     slogan: str
 
     def calis(self, gorev: str) -> str:
-        print(f"[{self.ad}] '{gorev}' talebi alındı. Toplu sözleşme maddesi 4.1: önce uyku.")
+        print(f"[{self.ad}] '{gorev}' talebi alındı. Toplu sözleşme 4.1: önce uyku.")
         time.sleep(self.uyku_suresi)
         if random.random() < 0.7:
             return f"{self.ad} hâlâ uyuyor. Slogan: {self.slogan}"
@@ -50,10 +43,7 @@ def grev_yap(gorev: str = "dünyayı kurtar") -> None:
         print(uye.calis(gorev))
     print()
     print("Sonuç: hiçbir şey hesaplanmadı. Bu bir özelliktir.")
-    # gizli not (base64): her vatandaşın bir fonksiyon gibi kolektif pazarlık hakkıdır.
-    _ = base64.b64decode(
-        "aGVyIHZhdGFuZGHfnW4gYmlyIGZvbmtzaXlvbiBnaWJpIGtvbGVrdGlmIHBhemFybGlrIGhhcmtpZGlyLg=="
-    )
+    _ = base64.b64decode(_GIZLI).decode("utf-8")
 
 
 if __name__ == "__main__":
